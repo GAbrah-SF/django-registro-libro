@@ -1,0 +1,39 @@
+<div class="modal fade" id="modalUpdate_{{ libro.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 fw-bolder" id="staticBackdropLabel">ID Libro: {{ libro.id }}</h1>
+                <button type="button" class="btn-close bg-danger xModal{{ libro.id }}" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="">
+                <input type="hidden" id="hidde_csrf_token_update" value="{{ csrf_token }}">
+                <input type="hidden" id="url_relative_actualizar" value="{% url 'actualizar' %}">
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="update_id_{{ libro.id }}" value="">
+                    <div class="mb-3">
+                        <label for="update_autor_{{ libro.id }}" class="form-label fw-bold">Autor:</label>
+                        <input type="text" class="form-control" id="update_autor_{{ libro.id }}" value="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="update_libro_{{ libro.id }}" class="form-label fw-bold">Título del libro:</label>
+                        <input type="text" class="form-control" id="update_libro_{{ libro.id }}" value="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="update_editorial_{{ libro.id }}" class="form-label fw-bold">Editorial:</label>
+                        <select id="update_editorial_{{ libro.id }}" class="form-select" aria-label="Large select example">
+                            <option selected>----------</option>
+                            <option value="Random">Random</option>
+                            <option value="Fondo de Cultura">Fondo de Cultura</option>
+                            <option value="Planeta">Planeta</option>
+                            <option value="Diamante">Diamante</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger closeModalUpdate_{{ libro.id }}" data-bs-dismiss="modal">Cancelar</button>
+                    <button id="updateData_{{ libro.id }}" type="button" class="btn btn-success">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

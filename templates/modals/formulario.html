@@ -1,0 +1,46 @@
+{% load static %}
+
+<!-- Modal para Registrar un Libro -->
+<div class="modal fade" id="modalFormLibro" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Datos del Libro</h1>
+                <button type="button" class="btn-close bg-danger close_modal" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <form action="">
+                <input type="hidden" id="hidde_csrf_token" value="{{ csrf_token }}">
+                <input type="hidden" id="url_relative_guardar" value="{% url 'guardar' %}">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="autor" class="form-label fw-bold">Autor:</label>
+                        <input type="text" class="form-control" id="autor">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="libro" class="form-label fw-bold">Título del libro:</label>
+                        <input type="text" class="form-control" id="libro">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="editorial" class="form-label fw-bold">Editorial:</label>
+                        <select id="editorial" class="form-select" aria-label="Large select example">
+                            <option selected>----------</option>
+                            <option value="Random">Random</option>
+                            <option value="Fondo de Cultura">Fondo de Cultura</option>
+                            <option value="Planeta">Planeta</option>
+                            <option value="Diamante">Diamante</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger close_modal" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success guardar_datos">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
