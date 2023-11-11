@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from config import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@jcn(w_%$j($)h347+5reb2hi)dwuegb20hk$&-&waa$54cd2@'
+SECRET_KEY = config['LLAVE']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,8 +79,12 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config['CREDENTIALS']['NAME'],
+        'USER': config['CREDENTIALS']['USER'],
+        'PASSWORD': config['CREDENTIALS']['PASSWORD'],
+        'HOST': config['CREDENTIALS']['HOST'],
+        'PORT': config['CREDENTIALS']['PORT'],
     }
 }
 
