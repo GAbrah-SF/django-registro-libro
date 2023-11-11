@@ -40,18 +40,18 @@ $(document).ready(function () {
         })
 
         $(`#updateData_${id_number}`).on("click", function () {
-            let data_update = {
+            let data_update = JSON.stringify({
                 "id": id_number,
                 "autor": update_autor.val(),
                 "libro": update_libro.val(),
                 "editorial": update_editorial.val(),
-                "csrfmiddlewaretoken": hidde_csrf_token_update
-            }
+            })
 
             // Realiza la solicitud AJAX
             $.ajax({
                 url: url_relative_actualizar,
-                type: "POST",
+                type: "PUT",
+                contentType: 'application/json',
                 data: data_update,
                 success: function (response) {
                     swal.fire({

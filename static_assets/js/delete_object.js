@@ -1,6 +1,5 @@
 $(document).ready(function () {
     let id_delete = [], id_show_libro = []
-    let hidde_csrf_token_delete = $("#hidde_csrf_token_delete").val()
     let url_relative_eliminar = $("#url_relative_eliminar").val()
 
     $('.delete_data').each(function () {
@@ -35,8 +34,8 @@ $(document).ready(function () {
                 if (result.value) {
                     $.ajax({
                         url: url_relative_eliminar,
-                        type: 'POST',
-                        data: {"id": id, "csrfmiddlewaretoken": hidde_csrf_token_delete},
+                        type: 'DELETE',
+                        data: {"id": id},
                         success: function (response) {
                             swal.fire({
                                 position: response.icon,

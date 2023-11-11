@@ -23,7 +23,7 @@ class CreateLibro(APIView):
 
 
 class UpdateLibro(APIView):
-    def post(self, request):
+    def put(self, request, *args, **kwargs):
         try:
             libro = get_object_or_404(Libro, id=request.data.get('id'))
 
@@ -42,10 +42,9 @@ class UpdateLibro(APIView):
 
 
 class DeleteLibro(APIView):
-    def post(self, request, *args, **kwargs):
-        id_libro = request.data.get('id')  # Use request.data for POST data in DRF
+    def delete(self, request, *args, **kwargs):
         try:
-            libro = get_object_or_404(Libro, id=id_libro)
+            libro = get_object_or_404(Libro, id=request.data.get('id'))
             libro.delete()
 
             return Response({'icon': 'success', 'message': 'Libro eliminado'}, status=status.HTTP_200_OK)
