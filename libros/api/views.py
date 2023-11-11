@@ -25,16 +25,17 @@ class CreateLibro(APIView):
 class UpdateLibro(APIView):
     def post(self, request):
         try:
-            libro = Libro.objects.get(id=request.data['id'])
-            libro.autor = request.data['autor']
-            libro.libro = request.data['libro']
-            libro.editorial = request.data['editorial']
-            libro.save()
+            libro = get_object_or_404(Libro, id=request.data.get('id'))
 
-            return Response({"icon": "success", "message": "Datos actualizados correctamente"})
+            # Utilizar el serializer para validar y actualizar los datos
+            serializer = LibroSerializer(libro, data=request.data, partial=True)
 
-        except Libro.DoesNotExist:
-            return Response({"icon": "error", "message": "Libro no encontrado"}, status=status.HTTP_404_NOT_FOUND)
+            if serializer.is_valid():
+                serializer.save()
+                return Response({"icon": "success", "message": "Datos actualizados correctamente"})
+
+            else:
+                return Response({"icon": "error", "message": "Datos no válidos"}, status=status.HTTP_400_BAD_REQUEST)
 
         except KeyError:
             return Response({"icon": "error", "message": "Datos incompletos"}, status=status.HTTP_400_BAD_REQUEST)
